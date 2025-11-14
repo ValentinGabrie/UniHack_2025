@@ -34,7 +34,6 @@ app.UseCors("AllowAll");
 app.UseAuthorization();
 app.MapControllers();
 
-// Aplică migrațiile automat
 try
 {
     using var scope = app.Services.CreateScope();
