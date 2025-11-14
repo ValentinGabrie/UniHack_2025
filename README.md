@@ -8,3 +8,5 @@ docker-compose up -d
 # Pornesti backend-ul
 cd .\WebApp\backend\WebAppBackend
 dotnet run
+
+# Porneste frontend
