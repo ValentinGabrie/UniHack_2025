@@ -2811,25 +2811,24 @@
     ]
   },
   "packageFolders": {
-    "/home/raluca/.nuget/packages/": {}
+    "/home/vlad/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/raluca/UniHack_2025/WebApp/backend/WebAppBackend/WebAppBackend.csproj",
+      "projectUniqueName": "/home/vlad/unihack_2025/UniHack_2025/WebApp/backend/WebAppBackend/WebAppBackend.csproj",
       "projectName": "WebAppBackend",
-      "projectPath": "/home/raluca/UniHack_2025/WebApp/backend/WebAppBackend/WebAppBackend.csproj",
-      "packagesPath": "/home/raluca/.nuget/packages/",
-      "outputPath": "/home/raluca/UniHack_2025/WebApp/backend/WebAppBackend/obj/",
+      "projectPath": "/home/vlad/unihack_2025/UniHack_2025/WebApp/backend/WebAppBackend/WebAppBackend.csproj",
+      "packagesPath": "/home/vlad/.nuget/packages/",
+      "outputPath": "/home/vlad/unihack_2025/UniHack_2025/WebApp/backend/WebAppBackend/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/raluca/.nuget/NuGet/NuGet.Config"
+        "/home/vlad/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "/usr/lib/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -2848,7 +2847,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.100"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net8.0": {
@@ -2894,12 +2893,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.NETCore.App.Host.linux-x64",
-            "version": "[8.0.21, 8.0.21]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -2908,7 +2901,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/9.0.111/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.307/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

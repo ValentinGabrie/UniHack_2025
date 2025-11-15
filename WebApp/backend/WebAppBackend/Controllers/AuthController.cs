@@ -19,13 +19,26 @@ public class AuthController :  ControllerBase
         _context = context;
     }
     
-    [HttpPost]
-    public void Login(LoginDto loginDto)
+    [HttpPost("login")]
+    public async Task<IActionResult> Login(LoginDto loginDto)
     {
+        var user = await _context.Users
+            .FirstOrDefaultAsync(u => u.Username == loginDto.Username);
+
+        if (user == null)
+        {
+            return Unauthorized(new { message = "Invalid username or password." });
+        }
+        
+        var passwordsMatch = BCrypt.Net.BCrypt.Verify(loginDto.Password, user.Password, true);
+
+        if (!passwordsMatch)
+        {
+            return Unauthorized(new { message = "Invalid username or password." });
+        }
+        
+        return Ok(new { message = "Successfully logged in." });
     }
-    
-    
-    
     
     [HttpPost("register")]
     public async Task<IActionResult> Register(RegisterDto model)
@@ -45,8 +58,6 @@ public class AuthController :  ControllerBase
             Username = model.Username,
             Email = model.Email,
             Password = BCrypt.Net.BCrypt.EnhancedHashPassword(model.Password, 13)
-
-            
         };
         try
         {
