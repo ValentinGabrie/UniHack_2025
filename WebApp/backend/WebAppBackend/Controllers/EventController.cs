@@ -40,4 +40,25 @@ public class EventController : ControllerBase
         await _context.SaveChangesAsync();
         return CreatedAtAction(nameof(GetEvent), new { id = eventToBePosted.Id }, eventToBePosted);
     }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put(Event eventToModify, int id)
+    {
+        if (id != eventToModify.Id)
+        {
+            return BadRequest("id is not correct");
+        }
+
+        _context.Entry(eventToModify).State = EntityState.Modified; 
+        await _context.SaveChangesAsync();
+        return NoContent();
+    }
+
+    [HttpDelete("{id}")]
+    public async Task Delete(int id)
+    {
+        var eventToDelete = await _context.Events.FindAsync(id);
+        _context.Events.Remove(eventToDelete);
+        await _context.SaveChangesAsync();
+    }
 }
