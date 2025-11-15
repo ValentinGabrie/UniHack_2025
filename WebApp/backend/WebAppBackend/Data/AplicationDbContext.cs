@@ -21,7 +21,7 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<User>(entity =>
         {
             entity.HasKey(e => e.Id);
-            entity.Property(e => e.Name).IsRequired().HasMaxLength(100);
+            entity.Property(e => e.Username).IsRequired().HasMaxLength(100);
             entity.Property(e => e.Email).IsRequired().HasMaxLength(200);
         });
     }
