@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Page } from '../App';
-import { ImageWithFallback } from './for_react/ImageWithFallback';
+import { ImageWithFallback } from './figma/ImageWithFallback';
 
 interface AboutUsProps {
   onNavigate: (page: Page) => void;

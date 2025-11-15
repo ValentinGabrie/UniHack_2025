@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { ArrowLeft, MapPin, Phone, Edit2, Save } from 'lucide-react';
-import { ImageWithFallback } from './for_react/ImageWithFallback';
+import { ImageWithFallback } from './figma/ImageWithFallback';
 
 interface Restaurant {
   id: number;

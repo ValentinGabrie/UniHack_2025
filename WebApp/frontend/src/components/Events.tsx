@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion } from 'motion/react';
 import { Page } from '../App';
 import { Calendar, MapPin, Clock, Plus, X } from 'lucide-react';
-import { ImageWithFallback } from './for_react/ImageWithFallback';
+import { ImageWithFallback } from './figma/ImageWithFallback';
 import { EventDetail } from './EventDetail';
 
 interface EventsProps {
@@ -366,31 +366,29 @@ Conceput și produs de FABER`
       </div>
 
       {/* Footer */}
-      <footer className="relative py-16 md:py-20 overflow-hidden" style={{
+      <footer className="relative py-16 md:py-20 overflow-hidden flex items-center justify-center" style={{
         background: 'linear-gradient(135deg, #FC87F6 0%, #FF2E1E 100%)'
       }}>
         <div className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3 opacity-30" style={{ backgroundColor: '#FBED4F' }} />
-        <div className="container mx-auto px-6 md:px-12 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <p className="text-white text-lg md:text-xl mb-8 leading-relaxed">
-              Stay updated with the latest events in Timișoara. From cultural performances to social gatherings, 
-              discover what's happening in your city.
-            </p>
-            <button
-              onClick={() => onNavigate('contact')}
-              className="bg-white/20 backdrop-blur-sm border-2 border-white/30 text-white px-8 py-4 rounded-full hover:bg-white transition-all text-lg"
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = '#FCFAF5';
-                e.currentTarget.style.color = '#FC87F6';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
-                e.currentTarget.style.color = 'white';
-              }}
-            >
-              Get in Touch
-            </button>
-          </div>
+        <div className="max-w-4xl mx-auto text-center px-6 md:px-12 relative z-10">
+          <p className="text-white text-lg md:text-xl mb-8 leading-relaxed">
+            Stay updated with the latest events in Timișoara. From cultural performances to social gatherings, 
+            discover what's happening in your city.
+          </p>
+          <button
+            onClick={() => onNavigate('contact')}
+            className="bg-white/20 backdrop-blur-sm border-2 border-white/30 text-white px-8 py-4 rounded-full hover:bg-white transition-all text-lg"
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = '#FCFAF5';
+              e.currentTarget.style.color = '#FC87F6';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+              e.currentTarget.style.color = 'white';
+            }}
+          >
+            Get in Touch
+          </button>
         </div>
       </footer>
     </div>

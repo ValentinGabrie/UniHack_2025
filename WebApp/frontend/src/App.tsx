@@ -1,12 +1,13 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, type Variants } from 'motion/react';
 import { Home } from './components/Home';
 import { Events } from './components/Events';
 import { BestSpots } from './components/BestSpots';
 import { MapPage } from './components/MapPage';
 import { Contact } from './components/Contact';
+import { Auth } from './components/Auth';
 
-export type Page = 'home' | 'events' | 'spots' | 'map' | 'contact';
+export type Page = 'home' | 'events' | 'spots' | 'map' | 'contact' | 'auth';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
@@ -23,12 +24,17 @@ export default function App() {
         return <MapPage onNavigate={setCurrentPage} />;
       case 'contact':
         return <Contact onNavigate={setCurrentPage} />;
+      case 'auth':
+        return <Auth onNavigate={setCurrentPage} />;
       default:
         return <Home onNavigate={setCurrentPage} />;
     }
   };
 
-  const pageVariants = {
+  // ---- FIX TIPARE + EASING ----
+  const easeBezier: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+  const pageVariants: Variants = {
     initial: {
       opacity: 0,
       y: 20,
@@ -38,7 +44,7 @@ export default function App() {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
+        ease: easeBezier,
       },
     },
     exit: {
@@ -46,7 +52,7 @@ export default function App() {
       y: -20,
       transition: {
         duration: 0.4,
-        ease: [0.22, 1, 0.36, 1],
+        ease: easeBezier,
       },
     },
   };

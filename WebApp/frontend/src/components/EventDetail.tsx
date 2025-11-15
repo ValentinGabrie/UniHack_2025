@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { ArrowLeft, MapPin, Calendar, Clock, Users, Edit2, Save, ExternalLink } from 'lucide-react';
-import { ImageWithFallback } from './for_react/ImageWithFallback';
+import { ImageWithFallback } from './figma/ImageWithFallback';
 
 interface Event {
   id: number;
