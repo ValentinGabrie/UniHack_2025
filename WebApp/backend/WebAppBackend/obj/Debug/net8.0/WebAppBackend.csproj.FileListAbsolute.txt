@@ -104,3 +104,4 @@ D:\UniHack_2025\WebApp\backend\WebAppBackend\obj\Debug\net8.0\refint\WebAppBacke
 D:\UniHack_2025\WebApp\backend\WebAppBackend\obj\Debug\net8.0\WebAppBackend.pdb
 D:\UniHack_2025\WebApp\backend\WebAppBackend\obj\Debug\net8.0\WebAppBackend.genruntimeconfig.cache
 D:\UniHack_2025\WebApp\backend\WebAppBackend\obj\Debug\net8.0\ref\WebAppBackend.dll
+D:\UniHack_2025\WebApp\backend\WebAppBackend\bin\Debug\net8.0\BCrypt.Net-Next.dll
