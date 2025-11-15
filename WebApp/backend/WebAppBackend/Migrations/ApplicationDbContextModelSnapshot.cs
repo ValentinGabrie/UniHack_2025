@@ -22,6 +22,31 @@ namespace WebAppBackend.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("WebAppBackend.Models.Location", b =>
+                {
+                    b.Property<int>("LocationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("LocationId"));
+
+                    b.Property<string>("address")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("city")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("state")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("LocationId");
+
+                    b.ToTable("Locations");
+                });
+
             modelBuilder.Entity("WebAppBackend.Models.User", b =>
                 {
                     b.Property<int>("Id")
