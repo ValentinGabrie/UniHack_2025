@@ -32,7 +32,7 @@ export function BestSpots({ onNavigate }: BestSpotsProps) {
       name: 'Suta de grame',
       cuisine: 'Romanian',
       rating: 9.5,
-      image: 'figma:asset/17707287ba9c75501093a1940f191732337ef013.png',
+      image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjByZXN0YXVyYW50fGVufDF8fHx8MTc2MzAzODg2N3ww&ixlib=rb-4.1.0&q=80&w=1080',
       description: 'Un loc super lejer unde găsești chestii bune și rapide, perfect pentru când vrei să mănânci ceva fresh fără complicații. Atmosfera e chill total.',
       address: 'Timișoara',
       phone: '(+40) 256 XXX XXX',

@@ -144,7 +144,7 @@ export function Home({ onNavigate }: HomeProps) {
 
       {/* Features Grid */}
       <section className="py-32 bg-white">
-        <div className="max-w-7xl mx-auto px-20">
+        <div className="mx-auto px-20">
           <div className="grid grid-cols-3 gap-12">
             {/* Feature 1 */}
             <div className="group cursor-pointer" onClick={() => onNavigate('events')}>
