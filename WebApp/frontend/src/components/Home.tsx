@@ -21,17 +21,17 @@ export function Home({ onNavigate }: HomeProps) {
         }} />
 
         {/* Header */}
-        <header className="relative z-20 flex items-center justify-end px-20 py-10">
+        <header className="relative z-20 flex items-center justify-end px-20 py-10 ">
           <div className="flex items-center gap-4">
             <button
               onClick={() => onNavigate('auth')}
-              className="text-white px-8 py-4 rounded-full hover:opacity-90 transition-all text-lg border-2 border-white/30"
+              className="text-white px-8 py-4 rounded-full hover:opacity-90 transition-all text-lg border-2 border-white/30 header-button"
             >
               Login
             </button>
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-white px-8 py-4 rounded-full hover:opacity-90 transition-all text-lg"
+              className="text-white px-8 py-4 rounded-full hover:opacity-90 transition-all text-lg header-button"
               style={{ backgroundColor: '#5ECCAD' }}
             >
               Menu
