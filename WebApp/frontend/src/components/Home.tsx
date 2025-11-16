@@ -112,7 +112,7 @@ export function Home({ onNavigate }: HomeProps) {
               
             </h1>
             <p className="text-white/90 text-2xl mb-16 max-w-3xl mx-auto leading-relaxed">
-              Ghidul tău de încredere pentru cele mai bune experiențe culinare din Timișoara
+              Ghidul tău de încredere pentru cele mai bune experiențe din Timișoara
             </p>
             <div className="flex gap-6 justify-center">
               <button
