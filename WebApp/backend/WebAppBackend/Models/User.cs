@@ -4,10 +4,9 @@ namespace WebAppBackend.Models;
 
 public class User
 {
-    [Key]
     public int Id { get; set; }
-    public string Username { get; set; } = string.Empty;
-    public string Email { get; set; } = string.Empty;
-    public string Password { get; set; } = string.Empty;
+    public required string Username { get; set; }
+    public required string Email { get; set; }
+    public required string Password { get; set; }  // Stochează hash-ul parolei
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }

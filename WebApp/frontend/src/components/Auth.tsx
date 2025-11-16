@@ -2,6 +2,7 @@ import { Page } from '../App';
 import { useState } from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
+import { api } from '../services/api';
 
 interface AuthProps {
   onNavigate: (page: Page) => void;
@@ -16,13 +17,73 @@ export function Auth({ onNavigate }: AuthProps) {
     password: '',
     confirmPassword: ''
   });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Mock authentication - in real app, this would call an API
-    console.log(isLogin ? 'Logging in...' : 'Registering...', formData);
-    // For demo purposes, just navigate to home
-    onNavigate('home');
+    setError(null);
+    setLoading(true);
+
+    try {
+      if (isLogin) {
+        // Login
+        const response = await api.auth.login({
+          email: formData.email,
+          password: formData.password
+        });
+
+        // Save token and user info
+        localStorage.setItem('auth_token', response.data.token);
+        localStorage.setItem('user', JSON.stringify({
+          username: response.data.username,
+          email: response.data.email,
+          userId: response.data.userId
+        }));
+
+        console.log('✅ Login successful!', response.data);
+        onNavigate('home');
+
+      } else {
+        // Register
+        if (formData.password !== formData.confirmPassword) {
+          setError('Parolele nu coincid!');
+          setLoading(false);
+          return;
+        }
+
+        const response = await api.auth.register({
+          username: formData.name,
+          email: formData.email,
+          password: formData.password
+        });
+
+        // Save token and user info
+        localStorage.setItem('auth_token', response.data.token);
+        localStorage.setItem('user', JSON.stringify({
+          username: response.data.username,
+          email: response.data.email,
+          userId: response.data.userId
+        }));
+
+        console.log('✅ Registration successful!', response.data);
+        onNavigate('home');
+      }
+    } catch (err: any) {
+      console.error('Auth error:', err);
+      
+      if (err.response?.data?.message) {
+        setError(err.response.data.message);
+      } else if (err.response?.status === 400) {
+        setError('Date invalide. Verifică formularul.');
+      } else if (err.response?.status === 401) {
+        setError('Email sau parolă incorectă.');
+      } else {
+        setError('A apărut o eroare. Încearcă din nou.');
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -65,61 +126,39 @@ export function Auth({ onNavigate }: AuthProps) {
           </button>
           <nav className="flex flex-col items-center gap-8">
             <button
-              onClick={() => {
-                onNavigate('home');
-                setIsMenuOpen(false);
-              }}
+              onClick={() => { onNavigate('home'); setIsMenuOpen(false); }}
               className="text-6xl text-white transition-colors hover:opacity-80"
               style={{ fontFamily: 'Retail Heavy, Montserrat, sans-serif', fontWeight: 900 }}
             >
               Home
             </button>
             <button
-              onClick={() => {
-                onNavigate('events');
-                setIsMenuOpen(false);
-              }}
+              onClick={() => { onNavigate('events'); setIsMenuOpen(false); }}
               className="text-6xl text-white transition-colors hover:opacity-80"
               style={{ fontFamily: 'Retail Heavy, Montserrat, sans-serif', fontWeight: 900 }}
             >
               Events
             </button>
             <button
-              onClick={() => {
-                onNavigate('spots');
-                setIsMenuOpen(false);
-              }}
+              onClick={() => { onNavigate('spots'); setIsMenuOpen(false); }}
               className="text-6xl text-white transition-colors hover:opacity-80"
               style={{ fontFamily: 'Retail Heavy, Montserrat, sans-serif', fontWeight: 900 }}
             >
               Best Spots
             </button>
             <button
-              onClick={() => {
-                onNavigate('map');
-                setIsMenuOpen(false);
-              }}
+              onClick={() => { onNavigate('map'); setIsMenuOpen(false); }}
               className="text-6xl text-white transition-colors hover:opacity-80"
               style={{ fontFamily: 'Retail Heavy, Montserrat, sans-serif', fontWeight: 900 }}
             >
               Map
             </button>
             <button
-              onClick={() => {
-                onNavigate('contact');
-                setIsMenuOpen(false);
-              }}
+              onClick={() => { onNavigate('contact'); setIsMenuOpen(false); }}
               className="text-6xl text-white transition-colors hover:opacity-80"
               style={{ fontFamily: 'Retail Heavy, Montserrat, sans-serif', fontWeight: 900 }}
             >
               Contact
-            </button>
-            <button
-              onClick={() => setIsMenuOpen(false)}
-              className="text-6xl transition-colors hover:opacity-80"
-              style={{ color: '#FBED4F', fontFamily: 'Retail Heavy, Montserrat, sans-serif', fontWeight: 900 }}
-            >
-              {isLogin ? 'Login' : 'Register'}
             </button>
           </nav>
         </div>
@@ -138,7 +177,10 @@ export function Auth({ onNavigate }: AuthProps) {
             {/* Toggle */}
             <div className="flex gap-2 mb-8 p-1 rounded-full" style={{ backgroundColor: '#FCFAF5' }}>
               <button
-                onClick={() => setIsLogin(true)}
+                onClick={() => {
+                  setIsLogin(true);
+                  setError(null);
+                }}
                 className="flex-1 py-3 rounded-full transition-all text-lg"
                 style={{
                   backgroundColor: isLogin ? '#7C80F6' : 'transparent',
@@ -150,7 +192,10 @@ export function Auth({ onNavigate }: AuthProps) {
                 Login
               </button>
               <button
-                onClick={() => setIsLogin(false)}
+                onClick={() => {
+                  setIsLogin(false);
+                  setError(null);
+                }}
                 className="flex-1 py-3 rounded-full transition-all text-lg"
                 style={{
                   backgroundColor: !isLogin ? '#7C80F6' : 'transparent',
@@ -174,6 +219,13 @@ export function Auth({ onNavigate }: AuthProps) {
               }
             </p>
 
+            {/* Error Message */}
+            {error && (
+              <div className="mb-6 p-4 rounded-2xl" style={{ backgroundColor: '#FEE2E2', color: '#991B1B' }}>
+                {error}
+              </div>
+            )}
+
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-5">
               {!isLogin && (
@@ -184,9 +236,10 @@ export function Auth({ onNavigate }: AuthProps) {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="w-full px-4 py-4 border-2 rounded-2xl focus:outline-none focus:border-opacity-100 transition-colors"
-                    style={{ borderColor: '#7C80F6', borderOpacity: 0.3 }}
+                    style={{ borderColor: 'rgba(124, 128, 246, 0.3)' }}
                     placeholder="Numele tău"
                     required={!isLogin}
+                    disabled={loading}
                   />
                 </div>
               )}
@@ -198,9 +251,10 @@ export function Auth({ onNavigate }: AuthProps) {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="w-full px-4 py-4 border-2 rounded-2xl focus:outline-none focus:border-opacity-100 transition-colors"
-                  style={{ borderColor: '#4AA5FF', borderOpacity: 0.3 }}
+                  style={{ borderColor: 'rgba(74, 165, 255, 0.3)' }}
                   placeholder="email@exemplu.com"
                   required
+                  disabled={loading}
                 />
               </div>
 
@@ -211,9 +265,10 @@ export function Auth({ onNavigate }: AuthProps) {
                   value={formData.password}
                   onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                   className="w-full px-4 py-4 border-2 rounded-2xl focus:outline-none focus:border-opacity-100 transition-colors"
-                  style={{ borderColor: '#5ECCAD', borderOpacity: 0.3 }}
+                  style={{ borderColor: 'rgba(94, 204, 173, 0.3)' }}
                   placeholder="••••••••"
                   required
+                  disabled={loading}
                 />
               </div>
 
@@ -225,9 +280,10 @@ export function Auth({ onNavigate }: AuthProps) {
                     value={formData.confirmPassword}
                     onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
                     className="w-full px-4 py-4 border-2 rounded-2xl focus:outline-none focus:border-opacity-100 transition-colors"
-                    style={{ borderColor: '#FC87F6', borderOpacity: 0.3 }}
+                    style={{ borderColor: 'rgba(252, 135, 246, 0.3)' }}
                     placeholder="••••••••"
                     required={!isLogin}
+                    disabled={loading}
                   />
                 </div>
               )}
@@ -246,24 +302,29 @@ export function Auth({ onNavigate }: AuthProps) {
 
               <button
                 type="submit"
-                className="w-full py-4 rounded-2xl text-white text-lg transition-all shadow-lg hover:shadow-xl inline-flex items-center justify-center gap-3 group"
+                disabled={loading}
+                className="w-full py-4 rounded-2xl text-white text-lg transition-all shadow-lg hover:shadow-xl inline-flex items-center justify-center gap-3 group disabled:opacity-50 disabled:cursor-not-allowed"
                 style={{ 
-                  backgroundColor: '#FBED4F',
+                  backgroundColor: loading ? '#9CA3AF' : '#FBED4F',
                   color: '#1F2937',
                   fontFamily: 'Retail Heavy, Montserrat, sans-serif',
                   fontWeight: 900
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#5ECCAD';
-                  e.currentTarget.style.color = 'white';
+                  if (!loading) {
+                    e.currentTarget.style.backgroundColor = '#5ECCAD';
+                    e.currentTarget.style.color = 'white';
+                  }
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = '#FBED4F';
-                  e.currentTarget.style.color = '#1F2937';
+                  if (!loading) {
+                    e.currentTarget.style.backgroundColor = '#FBED4F';
+                    e.currentTarget.style.color = '#1F2937';
+                  }
                 }}
               >
-                {isLogin ? 'Intră în cont' : 'Creează cont'}
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                {loading ? 'Se încarcă...' : (isLogin ? 'Intră în cont' : 'Creează cont')}
+                {!loading && <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />}
               </button>
             </form>
           </div>
@@ -272,7 +333,10 @@ export function Auth({ onNavigate }: AuthProps) {
           <p className="text-center mt-6 text-white text-lg">
             {isLogin ? "Nu ai cont? " : "Ai deja cont? "}
             <button
-              onClick={() => setIsLogin(!isLogin)}
+              onClick={() => {
+                setIsLogin(!isLogin);
+                setError(null);
+              }}
               className="transition-colors hover:opacity-80"
               style={{ color: '#FBED4F', fontFamily: 'Retail Heavy, Montserrat, sans-serif', fontWeight: 900 }}
             >

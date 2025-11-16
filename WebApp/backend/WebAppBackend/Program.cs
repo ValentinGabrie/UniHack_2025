@@ -1,7 +1,9 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using WebAppBackend.Data;
 using WebAppBackend.Services;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,7 +19,31 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // HTTP Client for external APIs
 builder.Services.AddHttpClient<GoogleMapsService>();
 
-// CORS - Dynamic configuration
+// JWT Authentication
+var jwtKey = builder.Configuration["Jwt:Key"] ?? "YourSuperSecretKeyThatIsAtLeast32CharactersLong!";
+var jwtIssuer = builder.Configuration["Jwt:Issuer"] ?? "WebAppBackend";
+var jwtAudience = builder.Configuration["Jwt:Audience"] ?? "WebAppFrontend";
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = jwtIssuer,
+        ValidAudience = jwtAudience,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
+    };
+});
+
+// CORS
 var allowedOrigins = builder.Configuration["Cors:AllowedOrigins"]?.Split(',') 
     ?? new[] { "http://localhost", "http://localhost:80", "http://localhost:5173" };
 
@@ -27,11 +53,12 @@ builder.Services.AddCors(options =>
     {
         policy.WithOrigins(allowedOrigins)
               .AllowAnyHeader()
-              .AllowAnyMethod();
+              .AllowAnyMethod()
+              .AllowCredentials();
     });
 });
 
-// Health checks - VERSION SIMPLĂ
+// Health checks
 builder.Services.AddHealthChecks();
 
 var app = builder.Build();
@@ -44,7 +71,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseCors("AllowFrontend");
+
+app.UseAuthentication();
 app.UseAuthorization();
+
 app.MapControllers();
 app.MapHealthChecks("/health");
 
@@ -59,7 +89,6 @@ try
 catch (Exception ex)
 {
     Console.WriteLine($"❌ Migration failed: {ex.Message}");
-    Console.WriteLine("⚠️  Application will continue but database may not be initialized.");
 }
 
 app.Run();

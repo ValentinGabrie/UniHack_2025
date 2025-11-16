@@ -1,40 +1,45 @@
 import axios from 'axios'
 
-// Base URL - va folosi proxy-ul din vite.config.ts în dev
-// În producție (Docker), va folosi nginx proxy
-const API_BASE_URL = import.meta.env.VITE_API_URL || '/api'
+// Base URL
+const getApiBaseUrl = () => {
+  if (typeof import.meta !== 'undefined' && import.meta.env) {
+    return (import.meta.env as any).VITE_API_URL || '/api'
+  }
+  return '/api'
+}
+
+const API_BASE_URL = getApiBaseUrl()
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json'
   },
-  timeout: 10000
+  timeout: 10000,
+  withCredentials: true
 })
 
-// Request interceptor
+// Request interceptor - Add auth token
 apiClient.interceptors.request.use(
   (config) => {
-    // Adaugă token dacă aveți autentificare
-    // const token = localStorage.getItem('token')
-    // if (token) {
-    //   config.headers.Authorization = `Bearer ${token}`
-    // }
+    const token = localStorage.getItem('auth_token')
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`
+    }
     return config
   },
   (error) => Promise.reject(error)
 )
 
-// Response interceptor pentru error handling
+// Response interceptor
 apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      console.error('Unauthorized')
-      // Redirect to login dacă aveți autentificare
-    }
-    if (error.response?.status === 500) {
-      console.error('Server error')
+      localStorage.removeItem('auth_token')
+      localStorage.removeItem('user')
+      // Don't redirect automatically, let component handle it
+      console.error('Unauthorized - token expired or invalid')
     }
     return Promise.reject(error)
   }
@@ -43,13 +48,45 @@ apiClient.interceptors.response.use(
 // Types
 export interface User {
   id: number
-  name: string
+  username: string
   email: string
   createdAt: string
 }
 
-// API Methods - Exportați funcții pe care colegele le pot folosi
+export interface LoginRequest {
+  email: string
+  password: string
+}
+
+export interface RegisterRequest {
+  username: string
+  email: string
+  password: string
+}
+
+export interface AuthResponse {
+  token: string
+  username: string
+  email: string
+  userId: number
+}
+
+// API Methods
 export const api = {
+  // Auth
+  auth: {
+    register: (data: RegisterRequest) => 
+      apiClient.post<AuthResponse>('/auth/register', data),
+    login: (data: LoginRequest) => 
+      apiClient.post<AuthResponse>('/auth/login', data),
+    me: () => 
+      apiClient.get<User>('/auth/me'),
+    logout: () => {
+      localStorage.removeItem('auth_token')
+      localStorage.removeItem('user')
+    }
+  },
+
   // Users
   users: {
     getAll: () => apiClient.get<User[]>('/users'),

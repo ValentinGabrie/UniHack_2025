@@ -2,6 +2,6 @@ namespace WebAppBackend.DTO;
 
 public class LoginDto
 {
-    public string Username { get; set; } = string.Empty;
-    public string Password { get; set; } = string.Empty;
+    public required string Email { get; set; }  // Can be email OR username
+    public required string Password { get; set; }
 }
