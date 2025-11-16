@@ -1,19 +1,4 @@
-ale
-alreadymorning_ale
-🦋 555
 
-Acesta este începutul canalului #cod🙉. 
-crunchy — 11:38
-Perfect! Hai să adăugăm funcționalitate completă pentru hartă cu Google Maps și să conectăm locațiile la backend.
-
-## 🗺️ PARTEA 1: Backend - Location API
-
-### 1. Verifică Location Model
-Extinde
-message.txt
-5 KB
-modificari pt harta functionala
-crunchy — 11:45
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebAppBackend.Data;
