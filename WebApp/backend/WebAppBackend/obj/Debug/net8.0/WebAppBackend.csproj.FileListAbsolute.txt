@@ -105,3 +105,15 @@ D:\UniHack_2025\WebApp\backend\WebAppBackend\obj\Debug\net8.0\WebAppBackend.pdb
 D:\UniHack_2025\WebApp\backend\WebAppBackend\obj\Debug\net8.0\WebAppBackend.genruntimeconfig.cache
 D:\UniHack_2025\WebApp\backend\WebAppBackend\obj\Debug\net8.0\ref\WebAppBackend.dll
 D:\UniHack_2025\WebApp\backend\WebAppBackend\bin\Debug\net8.0\BCrypt.Net-Next.dll
+C:\Users\Einsteinn\Desktop\UniHack_2025\WebApp\backend\WebAppBackend\obj\Debug\net8.0\WebAppBackend.csproj.AssemblyReference.cache
+C:\Users\Einsteinn\Desktop\UniHack_2025\WebApp\backend\WebAppBackend\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\Einsteinn\Desktop\UniHack_2025\WebApp\backend\WebAppBackend\obj\Debug\net8.0\WebAppBackend.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Einsteinn\Desktop\UniHack_2025\WebApp\backend\WebAppBackend\obj\Debug\net8.0\WebAppBackend.AssemblyInfoInputs.cache
+C:\Users\Einsteinn\Desktop\UniHack_2025\WebApp\backend\WebAppBackend\obj\Debug\net8.0\WebAppBackend.AssemblyInfo.cs
+C:\Users\Einsteinn\Desktop\UniHack_2025\WebApp\backend\WebAppBackend\obj\Debug\net8.0\WebAppBackend.csproj.CoreCompileInputs.cache
+C:\Users\Einsteinn\Desktop\UniHack_2025\WebApp\backend\WebAppBackend\obj\Debug\net8.0\WebAppBackend.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Einsteinn\Desktop\UniHack_2025\WebApp\backend\WebAppBackend\obj\Debug\net8.0\WebAppBackend.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Einsteinn\Desktop\UniHack_2025\WebApp\backend\WebAppBackend\obj\Debug\net8.0\WebAppBackend.sourcelink.json
+C:\Users\Einsteinn\Desktop\UniHack_2025\WebApp\backend\WebAppBackend\obj\Debug\net8.0\WebAppBackend.dll
+C:\Users\Einsteinn\Desktop\UniHack_2025\WebApp\backend\WebAppBackend\obj\Debug\net8.0\refint\WebAppBackend.dll
+C:\Users\Einsteinn\Desktop\UniHack_2025\WebApp\backend\WebAppBackend\obj\Debug\net8.0\WebAppBackend.pdb

@@ -41,11 +41,13 @@ public class ApplicationDbContext : DbContext
 
         // Location configuration
         modelBuilder.Entity<Location>(entity =>
-        {
-            entity.HasKey(e => e.LocationId);
-            entity.Property(e => e.address).IsRequired().HasMaxLength(300);
-            entity.Property(e => e.city).IsRequired().HasMaxLength(100);
-            entity.Property(e => e.state).IsRequired().HasMaxLength(100);
-        });
+{
+    entity.HasKey(e => e.Id);
+    entity.Property(e => e.Name).IsRequired().HasMaxLength(200);
+    entity.Property(e => e.Address).IsRequired().HasMaxLength(300);
+    entity.Property(e => e.City).IsRequired().HasMaxLength(100);
+    entity.Property(e => e.Type).HasMaxLength(50);
+    entity.Property(e => e.Cuisine).HasMaxLength(50);
+});
     }
 }

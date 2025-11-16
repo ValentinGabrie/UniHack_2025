@@ -98,6 +98,24 @@ export const api = {
     delete: (id: number) => 
       apiClient.delete<void>(`/users/${id}`)
   },
+  locations: {
+  getAll: (params?: { type?: string; cuisine?: string; minRating?: number }) =>
+    apiClient.get<Location[]>('/locations', { params }),
+  getById: (id: number) =>
+    apiClient.get<Location>(`/locations/${id}`),
+  create: (location: Omit<Location, 'id' | 'createdAt'>) =>
+    apiClient.post<Location>('/locations', location),
+  update: (id: number, location: Location) =>
+    apiClient.put<void>(`/locations/${id}`, location),
+  delete: (id: number) =>
+    apiClient.delete<void>(`/locations/${id}`),
+  getTypes: () =>
+    apiClient.get<string[]>('/locations/types'),
+  getCuisines: () =>
+    apiClient.get<string[]>('/locations/cuisines'),
+  seed: () =>
+    apiClient.post('/locations/seed')
+},
 
   // Google Maps
   maps: {
