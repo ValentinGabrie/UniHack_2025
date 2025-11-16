@@ -1,10 +1,3 @@
-
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using WebAppBackend.Data;
-using WebAppBackend.Models;
-
-namespace WebAppBackend.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebAppBackend.Data;
@@ -32,19 +25,16 @@ public class LocationsController : ControllerBase
     {
         var query = _context.Locations.AsQueryable();
 
-        // Filter by type
         if (!string.IsNullOrEmpty(type))
         {
             query = query.Where(l => l.Type == type);
         }
 
-        // Filter by cuisine
         if (!string.IsNullOrEmpty(cuisine))
         {
             query = query.Where(l => l.Cuisine == cuisine);
         }
 
-        // Filter by rating
         if (minRating.HasValue)
         {
             query = query.Where(l => l.Rating >= minRating.Value);
@@ -54,7 +44,6 @@ public class LocationsController : ControllerBase
         return Ok(locations);
     }
 
-    // GET: api/locations/5
     [HttpGet("{id}")]
     public async Task<ActionResult<Location>> GetLocation(int id)
     {
@@ -68,7 +57,6 @@ public class LocationsController : ControllerBase
         return Ok(location);
     }
 
-    // POST: api/locations
     [HttpPost]
     public async Task<ActionResult<Location>> CreateLocation(Location location)
     {
@@ -78,7 +66,6 @@ public class LocationsController : ControllerBase
         return CreatedAtAction(nameof(GetLocation), new { id = location.Id }, location);
     }
 
-    // PUT: api/locations/5
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateLocation(int id, Location location)
     {
@@ -105,7 +92,6 @@ public class LocationsController : ControllerBase
         return NoContent();
     }
 
-    // DELETE: api/locations/5
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteLocation(int id)
     {
@@ -121,7 +107,6 @@ public class LocationsController : ControllerBase
         return NoContent();
     }
 
-    // GET: api/locations/types
     [HttpGet("types")]
     public async Task<ActionResult<IEnumerable<string>>> GetLocationTypes()
     {
@@ -134,7 +119,6 @@ public class LocationsController : ControllerBase
         return Ok(types);
     }
 
-    // GET: api/locations/cuisines
     [HttpGet("cuisines")]
     public async Task<ActionResult<IEnumerable<string>>> GetCuisines()
     {
@@ -147,11 +131,9 @@ public class LocationsController : ControllerBase
         return Ok(cuisines);
     }
 
-    // POST: api/locations/seed - Pentru a popula date test
     [HttpPost("seed")]
     public async Task<IActionResult> SeedLocations()
     {
-        // Check if already seeded
         if (await _context.Locations.AnyAsync())
         {
             return BadRequest(new { message = "Locations already seeded" });

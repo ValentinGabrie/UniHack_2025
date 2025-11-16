@@ -1,16 +1,6 @@
 import { useState, useCallback } from 'react';
 import { APIProvider, Map, AdvancedMarker, InfoWindow } from '@vis.gl/react-google-maps';
-
-interface Location {
-  id: number;
-  name: string;
-  address: string;
-  latitude: number;
-  longitude: number;
-  type?: string;
-  cuisine?: string;
-  rating: number;
-}
+import type { Location } from '../../services/api';   // 👈 importăm tipul unic Location
 
 interface GoogleMapComponentProps {
   locations: Location[];
@@ -91,5 +81,5 @@ export function GoogleMapComponent({ locations, apiKey, onLocationClick }: Googl
         </Map>
       </div>
     </APIProvider>
-  );
+  );
 }

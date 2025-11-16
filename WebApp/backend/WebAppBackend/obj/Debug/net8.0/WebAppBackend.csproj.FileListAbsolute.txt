@@ -117,3 +117,11 @@ C:\Users\Einsteinn\Desktop\UniHack_2025\WebApp\backend\WebAppBackend\obj\Debug\n
 C:\Users\Einsteinn\Desktop\UniHack_2025\WebApp\backend\WebAppBackend\obj\Debug\net8.0\WebAppBackend.dll
 C:\Users\Einsteinn\Desktop\UniHack_2025\WebApp\backend\WebAppBackend\obj\Debug\net8.0\refint\WebAppBackend.dll
 C:\Users\Einsteinn\Desktop\UniHack_2025\WebApp\backend\WebAppBackend\obj\Debug\net8.0\WebAppBackend.pdb
+D:\UniHack_2025\WebApp\backend\WebAppBackend\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\UniHack_2025\WebApp\backend\WebAppBackend\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+D:\UniHack_2025\WebApp\backend\WebAppBackend\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\UniHack_2025\WebApp\backend\WebAppBackend\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+D:\UniHack_2025\WebApp\backend\WebAppBackend\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+D:\UniHack_2025\WebApp\backend\WebAppBackend\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\UniHack_2025\WebApp\backend\WebAppBackend\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
+D:\UniHack_2025\WebApp\backend\WebAppBackend\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
