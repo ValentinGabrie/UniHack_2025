@@ -107,7 +107,7 @@ export function Auth({ onNavigate }: AuthProps) {
         <div className="flex items-center gap-4">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-white px-8 py-4 rounded-full hover:opacity-90 transition-all text-lg"
+            className="text-white px-8 py-4 rounded-full hover:opacity-90 transition-all text-lg header-button"
             style={{ backgroundColor: '#5ECCAD' }}
           >
             Menu
@@ -181,7 +181,7 @@ export function Auth({ onNavigate }: AuthProps) {
                   setIsLogin(true);
                   setError(null);
                 }}
-                className="flex-1 py-3 rounded-full transition-all text-lg"
+                className="flex-1 py-3 rounded-full transition-all text-lg header-button"
                 style={{
                   backgroundColor: isLogin ? '#7C80F6' : 'transparent',
                   color: isLogin ? 'white' : '#1F2937',
@@ -196,7 +196,7 @@ export function Auth({ onNavigate }: AuthProps) {
                   setIsLogin(false);
                   setError(null);
                 }}
-                className="flex-1 py-3 rounded-full transition-all text-lg"
+                className="flex-1 py-3 rounded-full transition-all text-lg header-button"
                 style={{
                   backgroundColor: !isLogin ? '#7C80F6' : 'transparent',
                   color: !isLogin ? 'white' : '#1F2937',
@@ -303,7 +303,7 @@ export function Auth({ onNavigate }: AuthProps) {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-4 rounded-2xl text-white text-lg transition-all shadow-lg hover:shadow-xl inline-flex items-center justify-center gap-3 group disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-4 rounded-2xl text-white text-lg transition-all shadow-lg hover:shadow-xl inline-flex items-center justify-center gap-3 group disabled:opacity-50 disabled:cursor-not-allowed hea"
                 style={{ 
                   backgroundColor: loading ? '#9CA3AF' : '#FBED4F',
                   color: '#1F2937',
