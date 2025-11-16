@@ -26,7 +26,7 @@ export function Contact({ onNavigate }: ContactProps) {
         <div className="flex items-center gap-4 mr-12">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-white px-8 py-4 rounded-full hover:opacity-90 transition-all text-lg"
+            className="text-white px-8 py-4 rounded-full hover:opacity-90 transition-all text-lg header-button"
             style={{ backgroundColor: '#5ECCAD' }}
           >
             Menu

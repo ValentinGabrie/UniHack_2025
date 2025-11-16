@@ -107,9 +107,9 @@ export function Home({ onNavigate }: HomeProps) {
               <span className="text-xl tracking-widest uppercase" style={{ color: '#FBED4F' }}>Timișoara 2025</span>
             </div>
             <h1 className="text-white text-9xl mb-10 tracking-tight" style={{ lineHeight: '1.1', fontFamily: 'Retail Heavy, Montserrat, sans-serif', fontWeight: 900 }}>
-              Discover the<br />
-              <span style={{ color: '#FBED4F' }}>best dining</span><br />
-              experiences
+              Ce facem<br />
+              <span style={{ color: '#FBED4F' }}>diseara?</span><br />
+              
             </h1>
             <p className="text-white/90 text-2xl mb-16 max-w-3xl mx-auto leading-relaxed">
               Ghidul tău de încredere pentru cele mai bune experiențe culinare din Timișoara
@@ -133,7 +133,7 @@ export function Home({ onNavigate }: HomeProps) {
               </button>
               <button
                 onClick={() => onNavigate('map')}
-                className="bg-white/10 backdrop-blur-sm text-white border-2 border-white/30 px-12 py-6 rounded-full hover:bg-white/20 transition-all text-xl"
+                className="bg-white/10 backdrop-blur-sm text-white border-2 border-white/30 px-12 py-6 rounded-full hover:bg-white/20 transition-all text-xl header-button"
               >
                 View Map
               </button>
@@ -239,7 +239,7 @@ export function Home({ onNavigate }: HomeProps) {
           </p>
           <button
             onClick={() => onNavigate('contact')}
-            className="px-12 py-5 rounded-full transition-all text-xl border-2"
+            className="px-12 py-5 rounded-full transition-all text-xl border-2 header-button"
             style={{ 
               backgroundColor: '#FBED4F',
               color: '#1F2937',

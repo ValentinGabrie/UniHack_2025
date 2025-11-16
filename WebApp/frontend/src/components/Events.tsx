@@ -377,7 +377,7 @@ Conceput și produs de FABER`
           </p>
           <button
             onClick={() => onNavigate('contact')}
-            className="bg-white/20 backdrop-blur-sm border-2 border-white/30 text-white px-8 py-4 rounded-full hover:bg-white transition-all text-lg"
+            className="bg-white/20 backdrop-blur-sm border-2 border-white/30 text-white px-8 py-4 rounded-full hover:bg-white transition-all text-lg header-button"
             onMouseEnter={(e) => {
               e.currentTarget.style.backgroundColor = '#FCFAF5';
               e.currentTarget.style.color = '#FC87F6';
