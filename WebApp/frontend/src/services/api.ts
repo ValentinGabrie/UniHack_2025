@@ -71,6 +71,22 @@ export interface AuthResponse {
   userId: number
 }
 
+export interface Location {
+  id: number
+  name: string
+  address: string
+  city: string
+  state?: string
+  latitude: number
+  longitude: number
+  type?: string
+  cuisine?: string
+  rating: number
+  description?: string
+  imageUrl?: string
+  createdAt: string
+}
+
 // API Methods
 export const api = {
   // Auth

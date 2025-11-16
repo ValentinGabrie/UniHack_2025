@@ -382,3 +382,20 @@ declare module 'next-themes' {
   export function useTheme(): any;
   export const ThemeProvider: React.ComponentType<any>;
 }
+
+
+export interface Location {
+  id: number
+  name: string
+  address: string
+  city: string
+  state?: string
+  latitude: number
+  longitude: number
+  type?: string
+  cuisine?: string
+  rating: number
+  description?: string
+  imageUrl?: string
+  createdAt: string
+}
