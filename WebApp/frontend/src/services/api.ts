@@ -91,11 +91,11 @@ export interface Location {
 export const api = {
   // Auth
   auth: {
-    register: (data: RegisterRequest) => 
+    register: (data: RegisterRequest) =>
       apiClient.post<AuthResponse>('/auth/register', data),
-    login: (data: LoginRequest) => 
+    login: (data: LoginRequest) =>
       apiClient.post<AuthResponse>('/auth/login', data),
-    me: () => 
+    me: () =>
       apiClient.get<User>('/auth/me'),
     logout: () => {
       localStorage.removeItem('auth_token')
@@ -107,36 +107,29 @@ export const api = {
   users: {
     getAll: () => apiClient.get<User[]>('/users'),
     getById: (id: number) => apiClient.get<User>(`/users/${id}`),
-    create: (user: Omit<User, 'id' | 'createdAt'>) => 
+    create: (user: Omit<User, 'id' | 'createdAt'>) =>
       apiClient.post<User>('/users', user),
-    update: (id: number, user: User) => 
+    update: (id: number, user: User) =>
       apiClient.put<void>(`/users/${id}`, user),
-    delete: (id: number) => 
+    delete: (id: number) =>
       apiClient.delete<void>(`/users/${id}`)
   },
-  locations: {
-  getAll: (params?: { type?: string; cuisine?: string; minRating?: number }) =>
-    apiClient.get<Location[]>('/locations', { params }),
-  getById: (id: number) =>
-    apiClient.get<Location>(`/locations/${id}`),
-  create: (location: Omit<Location, 'id' | 'createdAt'>) =>
-    apiClient.post<Location>('/locations', location),
-  update: (id: number, location: Location) =>
-    apiClient.put<void>(`/locations/${id}`, location),
-  delete: (id: number) =>
-    apiClient.delete<void>(`/locations/${id}`),
-  getTypes: () =>
-    apiClient.get<string[]>('/locations/types'),
-  getCuisines: () =>
-    apiClient.get<string[]>('/locations/cuisines'),
-  seed: () =>
-    apiClient.post('/locations/seed')
-},
 
   // Google Maps
   maps: {
-    geocode: (address: string) => 
+    geocode: (address: string) =>
       apiClient.get(`/maps/geocode`, { params: { address } })
+  },
+
+  // Locations – folosit de MapPage.tsx
+  locations: {
+    // GET /locations?type=...
+    getAll: (params?: { type?: string }) =>
+      apiClient.get<Location[]>('/locations', { params }),
+
+    // GET /locations/types  (ajustează ruta dacă backend-ul tău folosește alta)
+    getTypes: () =>
+      apiClient.get<string[]>('/locations/types')
   },
 
   // Health check
