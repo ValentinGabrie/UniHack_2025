@@ -88,7 +88,7 @@ export function MapPage({ onNavigate }: MapPageProps) {
         <header className="relative z-20 flex items-center justify-end px-12 py-10">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-white px-8 py-4 rounded-full hover:opacity-90 transition-all text-lg"
+            className="text-white px-8 py-4 rounded-full hover:opacity-90 transition-all text-lg "
             style={{ backgroundColor: '#4AA5FF' }}
           >
             Menu
